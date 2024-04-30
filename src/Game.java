@@ -92,10 +92,10 @@ public class Game implements ActionListener{
         for (int i = 0; i < 3; i++) 
             for (int j = 0; j < 3; j++) 
                 if(buttons[i][j].getText().equals(playerToken)){
-                    if(isWinner(0, i, j, 1, 0)||
-                    isWinner(0, i, j, 0, 1)||
-                    isWinner(0, i, j, 1, 1)||
-                    isWinner(0, i, j, 1, -1)){
+                    if(isWinner(1, i, j, 1, 0)||
+                    isWinner(1, i, j, 0, 1)||
+                    isWinner(1, i, j, 1, 1)||
+                    isWinner(1, i, j, 1, -1)){
                         winner = true;
                         return true;
                     }
@@ -125,7 +125,7 @@ public class Game implements ActionListener{
         if(!isInBoard(i, j)||!buttons[i][j].getText().equals(playerToken))
             return false;
 
-        if(ctr == 2)
+        if(ctr == 3)
             return true;
         
         return isWinner(++ctr, i + dirR, j + dirC, dirR, dirC);
