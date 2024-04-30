@@ -4,6 +4,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -13,9 +15,10 @@ import java.awt.Font;
   */
 public class Board {
     private JFrame board = new JFrame();
-    private JButton buttons[] = new JButton[9];
+    private JButton buttons[][] = new JButton[3][3];
     private JPanel titleFrame = new JPanel();
-    JLabel title = new JLabel("Tik Tak Toe");
+
+    private JLabel title = new JLabel("Tic Tac Toe");
 
     /**
      * Board constructor of GUI
@@ -23,7 +26,7 @@ public class Board {
     public Board(){
         // Set board config
         board.setSize(1000, 800);
-        board.setTitle("Tik Tak Toe Game");
+        board.setTitle("Tic Tac Toe Game");
         board.setLayout(new BorderLayout());
         
         // Configure title stuff
@@ -38,12 +41,13 @@ public class Board {
         grid.setLayout(new GridLayout(3,3, 3, 3));
         grid.setBackground(Color.black);
 
-        for (int i = 0; i < 9; i++) {
-            buttons[i] = new JButton();
-            grid.add(buttons[i]);
+        for (int i = 0; i < buttons.length; i++) {
+            for (int j = 0; j < buttons.length; j++) {
+                buttons[i][j] = new JButton("");
+                buttons[i][j].setBackground(Color.gray);
+                grid.add(buttons[i][j]);
+            }
         }
-
-        
         
         // Add stuff to board
         board.add(titleFrame, BorderLayout.NORTH);
@@ -53,6 +57,10 @@ public class Board {
         board.setResizable(true);
         board.setLocationRelativeTo(null);
         board.setVisible(true);
+    }
+
+    public void closeBoard(){
+        board.dispose();
     }
 
     /**
@@ -67,7 +75,7 @@ public class Board {
      * Returns Buttons Array
      * @return Buttons[]
       */
-    public JButton[] getButtons() {
+    public JButton[][] getButtons() {
         return buttons;
     }
 
